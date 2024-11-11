@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleMobileAds.Api;
+// using GoogleMobileAds.Api;
 using UnityEngine.UI;
 
 public class Admob : MonoBehaviour
 {
-	private InterstitialAd adInterstitial;
+	//private InterstitialAd adInterstitial;
 
 
 	private string idApp, idBanner, idInterstitial, idReward;
@@ -19,37 +19,37 @@ public class Admob : MonoBehaviour
 		idInterstitial = "ca-app-pub-3940256099942544/1033173712";
 		idReward = "ca-app-pub-3940256099942544/5224354917";
 
-		MobileAds.Initialize (idApp);
+	//	MobileAds.Initialize (idApp);
 		
 		RequestInterstitialAd (); 
 		
 	}
 	
 
-	#region Interstitial methods ---------------------------------------------
+	//#region Interstitial methods ---------------------------------------------
 
 	public void RequestInterstitialAd ()
 	{
-		adInterstitial = new InterstitialAd (idInterstitial);
-		AdRequest request = AdRequestBuild ();
-		adInterstitial.LoadAd (request);
-
-		//attach events
-		adInterstitial.OnAdLoaded += this.HandleOnAdLoaded;
-		adInterstitial.OnAdOpening += this.HandleOnAdOpening;
-		adInterstitial.OnAdClosed += this.HandleOnAdClosed;
+		// adInterstitial = new InterstitialAd (idInterstitial);
+		// AdRequest request = AdRequestBuild ();
+		// adInterstitial.LoadAd (request);
+		//
+		// //attach events
+		// adInterstitial.OnAdLoaded += this.HandleOnAdLoaded;
+		// adInterstitial.OnAdOpening += this.HandleOnAdOpening;
+		// adInterstitial.OnAdClosed += this.HandleOnAdClosed;
 	}
 
 	
 	public void ShowInterstitialAd ()
 	{
-		if (adInterstitial.IsLoaded ())
-			adInterstitial.Show ();
+		// if (adInterstitial.IsLoaded ())
+		// 	adInterstitial.Show ();
 	}
 
 	public void DestroyInterstitialAd ()
 	{
-		adInterstitial.Destroy ();
+		//adInterstitial.Destroy ();
 	}
 
 	//interstitial ad events
@@ -64,31 +64,31 @@ public class Admob : MonoBehaviour
 	public void HandleOnAdClosed (object sender, EventArgs args)
 	{
 		//this method executes when interstitial ad is closed
-		adInterstitial.OnAdLoaded -= this.HandleOnAdLoaded;
-		adInterstitial.OnAdOpening -= this.HandleOnAdOpening;
-		adInterstitial.OnAdClosed -= this.HandleOnAdClosed;
+		// adInterstitial.OnAdLoaded -= this.HandleOnAdLoaded;
+		// adInterstitial.OnAdOpening -= this.HandleOnAdOpening;
+		// adInterstitial.OnAdClosed -= this.HandleOnAdClosed;
 
 		RequestInterstitialAd (); //request new interstitial ad after close
 	}
 
-	#endregion
+//	#endregion
 
 	
 	
 	//------------------------------------------------------------------------
-	AdRequest AdRequestBuild ()
-	{
-		return new AdRequest.Builder ().Build ();
-	}
+	// AdRequest AdRequestBuild ()
+	// {
+	// 	return new AdRequest.Builder ().Build ();
+	// }
 
 	void OnDestroy ()
 	{
-		DestroyInterstitialAd ();
-
-		//dettach events
-		adInterstitial.OnAdLoaded -= this.HandleOnAdLoaded;
-		adInterstitial.OnAdOpening -= this.HandleOnAdOpening;
-		adInterstitial.OnAdClosed -= this.HandleOnAdClosed;
+		// DestroyInterstitialAd ();
+		//
+		// //dettach events
+		// adInterstitial.OnAdLoaded -= this.HandleOnAdLoaded;
+		// adInterstitial.OnAdOpening -= this.HandleOnAdOpening;
+		// adInterstitial.OnAdClosed -= this.HandleOnAdClosed;
 	}
 
 }
