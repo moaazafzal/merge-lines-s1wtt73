@@ -31,7 +31,7 @@ namespace MergeDots.Scripts
                 }
                 else
                 {
-                    SetColor(curSpot.gameObject , 0.2f);
+                    SetColor(curSpot.gameObject , 0.5f);
                 }
             }
         }
