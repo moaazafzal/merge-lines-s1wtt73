@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using AL.Monetization.CustomAdmobAds.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     private General generalScript;
-    private Admob admobScript;
+    //private Admob admobScript;
 
     public Spot lastObj;
     public GameObject spotPrefab;
@@ -29,7 +30,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         generalScript = FindObjectOfType<General>();
-        admobScript = FindObjectOfType<Admob>();
+        
 
         allSpots = FindObjectsOfType<Spot>();
         linesScript = FindObjectOfType<Lines>();
@@ -171,12 +172,14 @@ public class GameController : MonoBehaviour
     private IEnumerator WaitThenLoadScene(float time)
     {
         // show InterstitialAd every 3 levels
-        if (generalScript.level%3 == 0)
-        {
-            admobScript.ShowInterstitialAd();
-        }
+        // if (generalScript.level%3 == 0)
+        // {
+        //     admobScript.ShowInterstitialAd();
+        // }
         
         // rerun Game scene (runs next level)
+        AdManager.instance.ShowInterstitial();
+        
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene("Game");
     }
